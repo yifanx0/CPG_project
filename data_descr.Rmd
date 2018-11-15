@@ -1,0 +1,29 @@
+---
+title: "CPG Data Description"
+subtitle: "in progress"
+author: "Owen Eagen, Yifan Xu"
+date: "2018/08/06"
+output: 
+  pdf_document:
+    toc: true
+    number_sections: true
+header-includes:
+  - \usepackage{color}
+  - \definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+urlcolor: airforceblue
+---
+
+This file documents observations made during the data cleaning process for the 
+CPG project.
+
+# Replicating Previous Data Cleaning Process
+
+This section deals with the process and results of replicating the cleaning code 
+provided by Professor Joo in the RA2/data_cleaning directory.
+
+# Exploring Files in the "externals" Directory
+
+This section stores our findings when exploring the files in the "externals" 
+directory. It mainly includes our interpretation of the variable names and 
+the comparison we make between the private and public data.
+
