@@ -2,7 +2,7 @@
 title: "CPG Data Description"
 subtitle: "in progress"
 author: "Owen Eagen, Yifan Xu"
-date: "2018/08/06"
+date: "2018/11/25"
 output: 
   pdf_document:
     toc: true
@@ -26,4 +26,36 @@ provided by Professor Joo in the RA2/data_cleaning directory.
 This section stores our findings when exploring the files in the "externals" 
 directory. It mainly includes our interpretation of the variable names and 
 the comparison we make between the private and public data.
+
+## dff.zip
+
+DFF, Dominick's Finer Foods, was a leading supermarket chain in Chicago.
+
+## IRI.zip
+
+### A bit about IRI
+IRI, Information Resources Inc, is a market research company founded in Chicago 
+in 1979, and was acquired by [Symphony Technology Group](https://www.symphonyretailai.com/about/aldata-apollo/) in 2003.[^iri] IRI 
+developed Apollo system, which provides desktop-based solutions that cover 
+category management process, including assortment management and on-shelf planogram
+(IRI is mentioned on page 304 in Dreze's paper).
+
+### Variable Names
+```{}
+[1] "UPC"      "WEEK"     "DACVFD"   "DACVF"    "DACVD"    "DACVP"    "DINCREM"  "DACVFA"  
+[9] "DACVFB"   "DKEYCAT"  "MINCREM"  "DCINCREM" "MCINCREM" "DBVOL"    "DBP"      "DBF"     
+[17] "DBFD"     "DVNP"     "DBVNP"    "DBD"      "BD"       "DAVGFD"   "DAVGF"    "DAVGD"   
+[25] "DAVGP"    "DWTAVG"  
+```
+
+
+## OMNI.zip
+
+[Omni Resources](https://www.omniresources.com) is a technology consulting firm
+found in 1984.
+
+
+
+
+[^iri]: Source: [Wikipedia](https://en.wikipedia.org/wiki/IRI_(company))
 
