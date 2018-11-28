@@ -8,7 +8,7 @@ library('bit64')
 library('plyr')
 
 ##### Set the working directory
-setwd("C:/Dropbox/joonhwiRA2/dominick_data_beer")
+setwd("~/Dropbox/RA2/data_cleaning/dominick_data_beer")
 
 ### Read the master product description data
 #products_colclass = c("integer64", "integer64", "character", "character", "integer", 
@@ -77,8 +77,6 @@ data[verifier == 0, verifier := NA]
 data = na.omit(data)
 
 data_cleaned = subset(data, select = select_col)
-
-
 
 
 ##### Load and clean the customer count data
