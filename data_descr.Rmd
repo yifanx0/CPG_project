@@ -40,6 +40,13 @@ developed Apollo system, which provides desktop-based solutions that cover
 category management process, including assortment management and on-shelf planogram
 (IRI is mentioned on page 304 in Dreze's paper).
 
+### Files in IRI.zip
+There are in total 28 files in the folder. Names of all files have 6 characters,
+starting with "acv." The last 3 characters are identifiers for the type of good
+documented. A map of the identifiers to the product names is stored in 
+`externals/POG/doc/category_desc.txt`.
+
+
 ### Variable Names
 ```{}
 [1] "UPC"      "WEEK"     "DACVFD"   "DACVF"    "DACVD"    "DACVP"    "DINCREM"  "DACVFA"  
@@ -47,6 +54,37 @@ category management process, including assortment management and on-shelf planog
 [17] "DBFD"     "DVNP"     "DBVNP"    "DBD"      "BD"       "DAVGFD"   "DAVGF"    "DAVGD"   
 [25] "DAVGP"    "DWTAVG"  
 ```
+
+We have not yet figured out the exact meanings of the variables yet. But we 
+grouped them according to observed patterns and made some guesses based on the 
+patterns.
+
+#### Grouping of variable names
+
+* `DACVF, DACVP, DACVD`
+    + `ACVFB, DACVFD, DACVFA`
+* `DINCREM, MINCREAM, DCINCREM, MCINCREM`
+* `DBVOL, DBP, DBF, DBD, DBFD`
+* `DVNP, DBVNP`
+* `BD`
+* `DAVGFD, DAVGF, DAVGD, DAVGP, DWTAVG`
+
+#### Guesses of meanings of patterns
+
+* `D-`: Daily?
+* `-AC-`: Accumulated? Average cost?
+* `-ACV-`:
+*	`V`: Volume
+*	`-AVG-`: Average
+*	`WTAVG`: Weighted average
+*	`-P`: Price
+*	`-BP`: Bundle price?
+*	`-D`:
+*	`-F`: 
+*	`-INCREM`: Increment
+*	`-C-`: Cumulative? Cost?
+*	`M-`: Monthly
+
 
 
 ## OMNI.zip
