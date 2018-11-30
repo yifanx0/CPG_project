@@ -126,5 +126,8 @@ and can therefore be cleaned in a similar way.
 
 
 ## OMNIIRI.zip
+There are in total 23 files in the folder, whose names follow the pattern of 
+`oacvxxx`, with abbreviations of product names as the last three letters. The 
+variable names are the same with those in `IRI.zip`.
 
 

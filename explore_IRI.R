@@ -12,6 +12,7 @@ file_list = unzip(zip_file_dir, list = TRUE)
 file_list
 # choose two csv files to explore
 csv_files = file_list[1:2, 1]
+# csv_files = c("oupcdid.csv", "owdid.csv")
 temp_dir = tempdir()
 unzip(zip_file_dir, files = csv_files, exdir = temp_dir)
 dt_1 = fread(paste0(temp_dir, "/", csv_files[1]))
