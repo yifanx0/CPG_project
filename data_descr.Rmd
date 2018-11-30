@@ -91,7 +91,7 @@ enough. We tried grouping them according to observed patterns and made some gues
 [Omni Resources](https://www.omniresources.com) is a technology consulting firm
 found in 1984.
 
-### Files in IRI.zip
+### Files in OMNI.zip
 There are in total 54 files in the folder, the names of half of which start with
 `ow` and the other half `oupc`. The last 3 letters of the file names, as in IRI.zip,
 are still abbreviations of the product documented. Files starting with `oupc` 
