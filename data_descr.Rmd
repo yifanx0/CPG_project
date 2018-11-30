@@ -31,18 +31,18 @@ the comparison we make between the private and public data.
 
 DFF, Dominick's Finer Foods, was a leading supermarket chain in Chicago.
 
+
 ## IRI.zip
 
 ### A bit about IRI
 IRI, Information Resources Inc, is a market research company founded in Chicago 
-in 1979, and was acquired by [Symphony Technology Group](https://www.symphonyretailai.com/about/aldata-apollo/) in 2003.[^iri] IRI 
-developed Apollo system, which provides desktop-based solutions that cover 
-category management process, including assortment management and on-shelf planogram
-(IRI is mentioned on page 304 in Dreze's paper).
+in 1979, and was acquired by [Symphony Technology Group](https://www.symphonyretailai.com/about/aldata-apollo/) in 2003.[^iri] IRI developed Apollo system, which provides desktop-based solutions 
+that cover category management process, including assortment management and 
+on-shelf planogram (IRI is mentioned on page 304 in Dreze's paper).
 
 ### Files in IRI.zip
 There are in total 28 files in the folder. Names of all files have 6 characters,
-starting with "acv." The last 3 characters are identifiers for the type of good
+starting with "acv." The last 3 letters are abbreviations for the product
 documented. A map of the identifiers to the product names is stored in 
 `externals/POG/doc/category_desc.txt`.
 
@@ -51,13 +51,13 @@ documented. A map of the identifiers to the product names is stored in
 ```{}
 [1] "UPC"      "WEEK"     "DACVFD"   "DACVF"    "DACVD"    "DACVP"    "DINCREM"  "DACVFA"  
 [9] "DACVFB"   "DKEYCAT"  "MINCREM"  "DCINCREM" "MCINCREM" "DBVOL"    "DBP"      "DBF"     
-[17] "DBFD"     "DVNP"     "DBVNP"    "DBD"      "BD"       "DAVGFD"   "DAVGF"    "DAVGD"   
+[17] "DBFD"     "DVNP"     "DBVNP"    "DBD"      "BD"       "DAVGFD"   "DAVGF"    "DAVGD" 
 [25] "DAVGP"    "DWTAVG"  
 ```
 
-We have not yet figured out the exact meanings of the variables yet. But we 
-grouped them according to observed patterns and made some guesses based on the 
-patterns.
+We have not yet figured out the exact meanings of the variables yet. There are 
+some descriptions in `externals/POG/doc/struct_iri.txt` but they are not clear 
+enough. We tried grouping them according to observed patterns and made some guesses based on the patterns.
 
 #### Grouping of variable names
 
@@ -71,7 +71,7 @@ patterns.
 
 #### Guesses of meanings of patterns
 
-* `D-`: Daily?
+* `D-`: Daily? Dominick's?
 * `-AC-`: Accumulated? Average cost?
 * `-ACV-`:
 *	`V`: Volume
@@ -79,12 +79,11 @@ patterns.
 *	`WTAVG`: Weighted average
 *	`-P`: Price
 *	`-BP`: Bundle price?
-*	`-D`:
-*	`-F`: 
+*	`-D`: Deal
+*	`-F`: Feature
 *	`-INCREM`: Increment
 *	`-C-`: Cumulative? Cost?
 *	`M-`: Monthly
-
 
 
 ## OMNI.zip
@@ -92,8 +91,43 @@ patterns.
 [Omni Resources](https://www.omniresources.com) is a technology consulting firm
 found in 1984.
 
+### Files in IRI.zip
+There are in total 54 files in the folder, the names of half of which start with
+`ow` and the other half `oupc`. The last 3 letters of the file names, as in IRI.zip,
+are still abbreviations of the product documented. Files starting with `oupc` 
+contain information of products while those starting with `ow` contain movement
+records.
 
+### Variable Names
+Variable names for `oupc-`
+```{}
+[1] "COM_CODE"  "NITEM"  "UPC"  "DESCRIP"  "SIZE"  "CASE"
+```
+These variables are consistent with those in the previously cleaned data and can 
+therefore be cleaned/handcoded in a similar way.
+They can be matched to variables in the `product_char` files as follows:
 
+* `COM_CODE`: `com_code`
+* `NITEM`: `dominick_id`
+* `UPC`: `UPC`
+* `DESCRIP`: `description`
+* `SIZE`: `package_size`
+* `CASE`: `boxsize_seller`
+
+Variable names for `ow-`
+```{}
+[1] "STORE"  "WEEK"   "UPC"   "MOVE"   "QTY"  "PRICE"  "SALE"  
+[9] "PROFIT"  "OK"
+```
+These variables are also consistent with those in the previously cleaned data 
+and can therefore be cleaned in a similar way.
 
 [^iri]: Source: [Wikipedia](https://en.wikipedia.org/wiki/IRI_(company))
+
+
+## OMNIIRI.zip
+There are in total 23 files in the folder, whose names follow the pattern of 
+`oacvxxx`, with abbreviations of product names as the last three letters. The 
+variable names are the same with those in `IRI.zip`.
+
 
