@@ -39,3 +39,21 @@ extract_movement = function(prod_name, prod_abbr) {
   file.rename(old_file_path, new_file_path)  
   # this will return TRUE in the console if successful
 }
+
+extract_planogram = function() {
+  # to apply this function, simply put the product name and product abbreviation
+  # as the inputs
+  # e.g. ("detergent", "did")
+  # the "wxxx.csv" will be saved to the target directory
+  # Note: to successfully run this function, the target directory (i.e. the raw 
+  # folder) does not need to exist beforehand
+  zip_file_dir = "~/Dropbox/RA2/externals/POG/data_csv/dff_csv.zip"
+  target_dir = "~/Dropbox/RA2/externals/POG_cleaning/dff_cleaning/"
+  dir.create(target_dir, showWarnings = FALSE)
+  file_name = "wptwsh.csv"
+  unzip(zip_file_dir, files = file_name, exdir = target_dir)
+  old_file_path = paste0(target_dir, "/", file_name)
+  new_file_path = paste0(target_dir, "/planogram.csv")
+  file.rename(old_file_path, new_file_path)  
+  # this will return TRUE in the console if successful
+}

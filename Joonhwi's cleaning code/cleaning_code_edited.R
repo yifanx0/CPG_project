@@ -8,7 +8,21 @@ library('bit64')
 library('plyr')
 
 ##### Set the working directory
-setwd("~/Dropbox/RA2/data_cleaning/dominick_data_beer")
+#setwd("~/Dropbox/RA2/data_cleaning/dominick_data_beer")
+setwd("~/Dropbox/RA2/externals/POG/data_csv")
+
+##### specficy a product category, extract the corresponding csv's
+category = 'beer'
+cat_abbr = ''
+setwd("~/Dropbox/RA2/externals/POG_cleaning/dff_cleaning")
+
+prod_file = paste0('dff_', category, '/dff_', 
+                   category, '_raw/upc_descr_', category)
+
+products = fread(prod_file, sep="auto", sep2=NULL,
+                 nrows=-1L, header=TRUE, na.strings=c(""), 
+                 stringsAsFactors=FALSE, verbose=TRUE, autostart=30L,
+                 drop=NULL, showProgress=TRUE, data.table = TRUE)
 
 ### Read the master product description data
 #products_colclass = c("integer64", "integer64", "character", "character", "integer", 
@@ -16,11 +30,10 @@ setwd("~/Dropbox/RA2/data_cleaning/dominick_data_beer")
 products_colclass = c("numeric", "numeric", "character", "character", "numeric", "numeric",
                       "numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric")
 
-products = fread("product_char_beer.csv", sep="auto", sep2=NULL,
-                 nrows=-1L, header=TRUE, na.strings=c(""), 
-                 stringsAsFactors=FALSE, verbose=TRUE, autostart=30L,
-                 drop=NULL, colClasses=products_colclass,
-                 showProgress=TRUE, data.table = TRUE)
+# products = fread("product_char_beer.csv", sep="auto", sep2=NULL,
+#                  nrows=-1L, header=TRUE, na.strings=c(""), 
+#                  stringsAsFactors=FALSE, verbose=TRUE, autostart=30L,
+#                  drop=NULL, showProgress=TRUE, data.table = TRUE)
 
 
 ### Read the movements data
@@ -28,7 +41,11 @@ products = fread("product_char_beer.csv", sep="auto", sep2=NULL,
 #                       "double", "character", "double", "integer")
 movements_colclass = c("numeric", "numeric", "numeric", "numeric","numeric",
                        "numeric", "character", "numeric", "numeric")
-movements = fread("movement_beer.csv", sep="auto", sep2=NULL,
+
+move_file = paste0('dff_', category, '/dff_', 
+            category, '_raw/movement_', category)
+
+movements = fread(move_file, sep="auto", sep2=NULL,
                   nrows=-1L, header=TRUE, na.strings=c("", "."), 
                   stringsAsFactors=FALSE, verbose=TRUE, autostart=30L,
                    drop=NULL, colClasses=movements_colclass,
@@ -43,7 +60,7 @@ movements[sale == "C", sale_coupon := 1]
 movements[sale == "S", sale_pricereduction := 1]
 
 
-### Select cola data
+### Select product category data
 data = movements[movements$upc %in% products$upc,]
 data$sale = NULL
 rm(movements)
