@@ -1,8 +1,8 @@
 ---
 title: "CPG Data Description"
 subtitle: "in progress"
-author: "Owen Eagen, Yifan Xu"
-date: "2018/11/25"
+author: "Yifan Xu, Owen Eagen"
+date: "2019/1/1"
 output: 
   pdf_document:
     toc: true
@@ -30,9 +30,6 @@ the comparison we make between the private and public data.
 We converted the data from sas format to csv first. The files described
 below can be found in the directory externals/POG/data_csv.
 
-## dff_csv.zip
-
-DFF, Dominick's Finer Foods, was a leading supermarket chain in Chicago.
 
 ## PID_csv.zip
 
@@ -54,7 +51,7 @@ In the files named with `namexxxi`, there are two columns, `NAME` and `PID`; in
 those named with `pidxxxi`, there are also two columns, `UPC` and `PID`.
 
 
-## src_csv folder
+## src_csv.zip
 
 The original src.zip is not organized very well, therefore when we converted the 
 files in the zip file to csv, we organized the files according to their directory 
@@ -87,6 +84,97 @@ There are 115 variables in each file as follows:
 [113] "MSMATCH2" "PROBLEM2" "PROBLEM3"
 ```
 
+### src_AGG_PID_csv.zip
+There are 6 files in the zip file, namely `pidxxxa.csv`, with the `xxx` being 
+`ana, did, cso, tna, oat, coo` respectively, which is the same as those 
+in `src_DICT_csv.zip`.
+
+In `pidanaa.csv, pidcsoa.csv, pidtnaa.csv, pidoata.csv`, there are 3 variables, 
+namely `UPC, PID, MKTSHARE`.
+
+In `piddida.csv`, there is an extra variable, `RECIPE`; in `pidcooa.csv`, there 
+are 4 more variables, `RECIPE, DESCRIP, TRY, DUPLIC`. `RECIPE` contains product 
+descriptions in abbreviations as well as unit size, while `DESCRIP` contains
+more readable descriptions. `TRY` and `DUPLIC` only appear in `pidcooa.csv`, with 
+`TRY` taking either `0` or `1` and `DUPLIC` taking `0` only.
+
+### src_AGG_old_csv.zip
+There are in total 48 files in the zip file, centering 6 products in total. Product 
+abbreviations that appear in the zip file are `cso, did, coo, oat, tna, ana`. For
+each, there are 8 files, namely 
+`afxxxa, axxxa, avxxxa, afvxxxa, afcxxxa, acxxxa, afcvxxxa, acvxxxa`.
+
+Variables in the files are as follows:
+
+`afxxxa`, `axxxa`
+```{}
+[1] "NITEM"  "STORE"  "WEEK"   "SALES"  "MOVE"   "NSALE"  "LPRICE" "PROFIT"
+```
+From some samples, it seems although `afxxxa` and `acsoa` have the same variable
+names, the data are mildly different for the same `STORE-WEEK-SALES-MOVE` combination.
+
+`avxxxa`
+```{}
+ [1] "STORE"    "WEEK"     "SALES1"   "SALES2"   "SALES3"   "SALES4"   "SALES5"   "SALES6"  
+ [9] "SALES7"   "SALES8"   "SALES9"   "SALES10"  "SALES11"  "SALES12"  "MOVE1"    "MOVE2"   
+[17] "MOVE3"    "MOVE4"    "MOVE5"    "MOVE6"    "MOVE7"    "MOVE8"    "MOVE9"    "MOVE10"  
+[25] "MOVE11"   "MOVE12"   "NSALE1"   "NSALE2"   "NSALE3"   "NSALE4"   "NSALE5"   "NSALE6"  
+[33] "NSALE7"   "NSALE8"   "NSALE9"   "NSALE10"  "NSALE11"  "NSALE12"  "LPRICE1"  "LPRICE2" 
+[41] "LPRICE3"  "LPRICE4"  "LPRICE5"  "LPRICE6"  "LPRICE7"  "LPRICE8"  "LPRICE9"  "LPRICE10"
+[49] "LPRICE11" "LPRICE12" "PROFIT1"  "PROFIT2"  "PROFIT3"  "PROFIT4"  "PROFIT5"  "PROFIT6" 
+[57] "PROFIT7"  "PROFIT8"  "PROFIT9"  "PROFIT10" "PROFIT11" "PROFIT12"
+```
+`SALES1, MOVE1, NSALE1, LPRICE1, PROFIT1` are identical to `SALES, MOVE, NSALE, LPRICE, PROFIT`
+in `axxxa`.
+
+`afvxxxa`
+
+Variable nmaes same as in `avxxxa`, but `SALES1, MOVE1, NSALE1, LPRICE1, PROFIT1`
+now correspond to `SALES, MOVE, NSALE, LPRICE, PROFIT` in `afxxxa`.
+
+`afcxxxa`
+```{}
+[1] "NITEM"  "WEEK"   "SALES"  "MOVE"   "NSALE"  "LPRICE" "PROFIT"
+```
+Basically everything in `afxxxa` except `"STORE"`.
+
+`acxxxa`
+
+Variable names same as in `afcxxxa`.
+
+`afcvxxxa`
+
+Variable names same as in `avxxxa` excpet `"STORE"`. 
+
+`acvxxxa`
+
+Variable names same as in `afcvxxxa`. Data differ from `afcvxxxa` on 
+`WEEK-MOVE-SALE` level.
+
+### src_AGG_csv.zip
+The file names are exactly the same as in `src_AGG_old_csv.zip`. I suppose they 
+are mostly the same, but have not checked yet.
+
+
+## dff_csv.zip
+
+DFF, Dominick's Finer Foods, was a leading supermarket chain in Chicago.
+
+### Files in dff_csv.zip
+
+There are in total 72 files in the folder. There are 
+
+* `upcxxx` (29) w/ `xxx` being `fsf, coo, tbr, bjc, tti, sha, frd, fre, sdr, tna`
+`lnd, rfj, tpa, sna, bat, soa, cra, cer, cig, gro, cso, che, oat, fec, frj, ber, ana, ptw, did`
+* `wxxxsh` (12) w/ `xxx` being `cso, cer, ptw, did, tpa, rfj, bjc, tna, ana, tti, ora, tbr`
+* `wxxx` (29) w/ `xxx` being `cer, cig, cso, che, gro, oat, fec, frj, ber, ana`
+`ptw, did, fsf, bjc, tbr, coo, tti, frd, fre, sdr, tna, lnd, tpa, sna, rfj, bat, soa, cra, sha`
+* `wanavsh` (1)
+* `wanabsh` (1)
+
+### Variable names
+
+A detailed description of the variable names can be found in `externals/POG/doc/struct_dff.txt`.
 
 
 ## IRI_csv.zip
