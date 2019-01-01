@@ -1,0 +1,29 @@
+ana  Analgesics
+bat  Bath Soap
+ber  Beer
+bjc  Bottled Juice
+cer  RTE Cereal
+che  Cheese
+cig  Cigarettes
+coo  Cookies
+cra  Crackers
+cso  Canned Soups
+did  Dish Detergent
+fec  Front-end Candy
+frd  Frozen Dinners
+fre  Frozen Entrees
+frj  Frozen Juice
+fsf  Fabric Softener
+gro  Grooming
+lnd  Laundry Detergent
+oat  Hot Cereal
+ptw  Paper Towels
+rfj  Refrigerated Juice
+sdr  Soft Drinks
+sha  Shampoo
+sna  Snack Crackers
+soa  Soap
+tbr  Tooth Brushes
+tna  Canned Tuna
+tpa  Toothpaste
+tti  Toilet Paper
