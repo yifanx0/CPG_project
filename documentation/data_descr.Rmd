@@ -172,6 +172,24 @@ There are in total 72 files in the folder. There are
 * `wanavsh` (1)
 * `wanabsh` (1)
 
+The `upcxxx` files contain UPC/product information, the `wxxxsh` files contain shelf/planogram information, and the `wxxx` files contain movement/sales information. 
+
+The following product categories have corresponding planogram files:
+
+* `cso`: Canned Soups
+* `cer`: RTE Cereal
+* `ptw`: Paper Towels
+* `did`: Dish Detergent
+* `tpa`: Toothpaste
+* `rfj`: Refrigerated Juice
+* `bjc`: Bottled Juice
+* `tna`: Canned Tuna
+* `ana`: Analgesics
+* `tti`: Toilet Paper
+* `ora`: ???
+* `tbr`: Tooth Brushes
+
+
 ### Variable names
 
 A detailed description of the variable names can be found in `externals/POG/doc/struct_dff.txt`.
