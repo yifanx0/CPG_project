@@ -12,7 +12,7 @@ setwd(paste0("~/Dropbox/RA2/externals/POG_cleaning/dff_cleaning/dff_", category,
 dt = read.csv(paste0('plano_', category, '.csv'), stringsAsFactors = FALSE, row.names = NULL)
 dt = as.data.table(dt)
 
-movements = fread(paste0('movement', category, '.csv'), sep="auto", sep2=NULL,
+movements = fread(paste0('movement_', category, '.csv'), sep="auto", sep2=NULL,
                   nrows=-1L, header=TRUE, na.strings=c("", "."), 
                   stringsAsFactors=FALSE, verbose=TRUE, autostart=30L,
                   drop=NULL,
@@ -55,8 +55,10 @@ hist(count_weeks$distinct_weeks)
 ### Observation: This histogram is noticeably left skewed, however not as severely as above. There is a large 
 # portion of UPC/weeks where planogram information was observed for only some (less than 33) weeks. 
 
-# Next, we want to determine if there is a pattern in the unique weeks among all the UPCs. For instance, do most
-# UPCs tend to have their planogram information observed in the same 8 week sequence?
+
+# The goal of the following section is to determine a) the meaning of all of the columns in the movement and
+# planogram files, and b) the source of the inconsistency in sales data between the two files.
+
 
 
 # pick a single UPC to subset

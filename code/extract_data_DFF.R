@@ -58,3 +58,12 @@ extract_planogram = function(prod_name, prod_abbr) {
   file.rename(old_file_path, new_file_path)  
   # this will return TRUE in the console if successful
 }
+
+# Goal: Extract the above three files for each of the 12 product categories which have planogram information.
+
+prods_with_plano = c()
+
+# for loop over vector with prod abbr and prod name, running each of the three functions
+  
+
+prods_with_plano = c()
