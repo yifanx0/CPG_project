@@ -318,7 +318,7 @@ and stores covered in each dataset. Our findings are as follows:
 
     - `wdid.csv` covers 393 unique weeks, which is much larger than the number 
     of weeks used as baseline in the paper, which is 86-99. `wdidsh.csv` covers 
-    33 unique weeks, which also seems larger than the 19-week experimental 
+    33 unique weeks, which also seems larger than the 16-week experimental 
     periods. Every week number that appears in `wdidsh.csv` is covered in `wdid.csv`.
 
     - Number of unique stores covered, on the other hand, appears much more 
@@ -335,7 +335,7 @@ the periods being the same. So we need to check the weeks covered on a store lev
 in both datasets. Our findings are as follows:
 
     - In `wdidsh`, after filtering by the condition `EXPER == 1`, there are 12-15 
-    unique weeks of data per store, which is close to the 19 weeks of experiment
+    unique weeks of data per store, which is close to the 16 weeks of experiment
     as claimed.
     - We also observed that after the filtering above, week numbers in `wdidsh`
     range from 92 to 106 (w/o filtering, the range is 74 to 106). 
