@@ -164,10 +164,10 @@ DFF, Dominick's Finer Foods, was a leading supermarket chain in Chicago.
 
 There are in total 72 files in the folder. There are 
 
-* `upcxxx` (29) w/ `xxx` being `fsf, coo, tbr, bjc, tti, sha, frd, fre, sdr, tna`
+* `upcxxx` (29) w/ `xxx` being `fsf, coo, tbr, bjc, tti, sha, frd, fre, sdr, tna,`
 `lnd, rfj, tpa, sna, bat, soa, cra, cer, cig, gro, cso, che, oat, fec, frj, ber, ana, ptw, did`
-* `wxxxsh` (12) w/ `xxx` being `cso, cer, ptw, did, tpa, rfj, bjc, tna, ana, tti, ora, tbr`
-* `wxxx` (29) w/ `xxx` being `cer, cig, cso, che, gro, oat, fec, frj, ber, ana`
+* `wxxxsh` (12) w/ `xxx` being `cso, cer, ptw, did, tpa, rfj, bjc, tna, ana, tti, ora, tbr,`
+* `wxxx` (29) w/ `xxx` being `cer, cig, cso, che, gro, oat, fec, frj, ber, ana,`
 `ptw, did, fsf, bjc, tbr, coo, tti, frd, fre, sdr, tna, lnd, tpa, sna, rfj, bat, soa, cra, sha`
 * `wanavsh` (1)
 * `wanabsh` (1)
@@ -272,5 +272,64 @@ and can therefore be cleaned in a similar way.
 There are in total 23 files in the folder, whose names follow the pattern of 
 `oacvxxx`, with abbreviations of product names as the last three letters. The 
 variable names are the same with those in `IRI.zip`.
+
+
+# Replicating results from Dreze et al. paper
+
+## Category-level results
+
+### Methodology
+As noted in the paper, "For each product category, we compared average weekly sales
+during the test period to sales in a pre-experimental baseline period. All sales, 
+regular and promotional, were included in our performance measures. Baselines were 
+computed over historical periods spanning 86 to 99 weeks depending on the category.
+Each experimental period lasted 16 weeks."
+
+### Space-to-movement
+
+According to the paper, there should be 30 stores receiving space-to-movement
+planograms and 30 received a control one.
+
+#### Example: dish detergents (did)
+We used dish detergents as an example. After unzipping `wdid.csv` and `wdidsh.csv`,
+it is worth noticing that the former is 172.4 MB, whereas the latter is only 7.6 MB.
+
+1. Our first guess would be `wdidsh.csv` contains experimental data, whereas `wdid.csv`
+is the source of control. In order to do some sanity checks, we looked at the weeks
+and stores covered in each dataset. Our findings are as follows:
+
+    - `wdid.csv` covers 393 unique weeks, which is much larger than the number 
+    of weeks used as baseline in the paper, which is 86-99. `wdidsh.csv` covers 
+    33 unique weeks, which also seems larger than the 19-week experimental 
+    periods. Every week number that appears in `wdidsh.csv` is covered in `wdid.csv`.
+
+    - Number of unique stores covered, on the other hand, appears much more 
+    consistent with the paper. In `wdid.csv`, there are 93 unique stores, and 
+    in `wdidsh.csv` there are 58, which is close to the 60 claimed in the paper 
+    (30 experiment + 30 control). Every store number that appears in `wdidsh.csv` 
+    is covered in `wdid.csv`.
+
+2. With the two observations, our first assumption has been proved wrong. However, 
+given the consistency between the number of stores in the `wdidsh.csv` and that
+is claimed in paper, we updated our assumption. It is possible that the actual 
+experiment and control periods for each store are different, with the length of 
+the periods being the same. So we need to check the weeks covered on a store level
+in both datasets. Our findings are as follows:
+
+    - In `wdidsh`, after filtering by the condition `EXPER == 1`, there are 12-15 
+    unique weeks of data per store, which is close to the 19 weeks of experiment
+    as claimed.
+    - We also observed that after the filtering above, week numbers in `wdidsh`
+    range from 92 to 106 (w/o filtering, the range is 74 to 106). 
+    - We tried filtering `wdid` as well using different conditions such as 
+    `MOVE != 0` and `OK = 1`, but it seems like they have little effect on the 
+    number of weeks covered.
+    - But with the second point, we are able to make a new guess, that is, the
+    historical reference weeks are simply the ones with number smaller than 92
+    (this number might change on a store level, but should be roughly the same).
+    Since `wdid` contains data for each store in almost every single week from
+    week 1 to week 399, there are data for the selected stores in weeks prior to
+    week 92(ish), which is consistent with 86-99 weeks of historical data claimed.
+
 
 
