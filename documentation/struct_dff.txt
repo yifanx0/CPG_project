@@ -1,0 +1,106 @@
+
+=======================================================================
+Contents of SAS dataset wxxx
+
+#    Variable    Type    Len    Pos   Description
+-----------------------------------   ---------------------------------
+4    MOVE        Num       8     14   Number of units sold
+9    OK          Num       3     49   Is this record ok? (1=YES,0=NO)
+5    PRICE       Num       8     22   Price in $ of QTY units
+8    PROFIT      Num       8     41   Profit margin =(price-cost)/price
+6    QTY         Num       3     30   Number of units that price buys
+7    SALE        Char      8     33   Special in-store deal code
+1    STORE       Num       3      0   Store Number
+2    UPC         Num       8      3   UPC Number
+3    WEEK        Num       3     11   Week Number
+
+Notes:
+  The Price of purchasing a single unit is PRICE/QTY, 
+    also price refers to the net price
+  QTY is the number of units the PRICE will buy, for example
+    a BOGO @ 2 for $1, if consumers buy 20 units the record will
+    be MOVE=20, PRICE=1, QTY=2
+  Revenues can be computed as (PRICE/QTY)*MOVE
+  PROFIT refers to gross profits margin only,
+    if there is a payback from the manufacturer to the retailer
+    PROFIT may be adjusted to reflect this payment but only
+    during selected weeks and if the payment is directly in
+    proportion to the number of units sold.  See payback file
+    for more information.  The average wholesale cost can be
+    imputed from PROFIT=100*(PRICE-WHOLESALECOST)/PRICE.  Also,
+    note that PROFIT is not necessarily the marginal wholesale 
+    cost, but comes from Dominick's accounting system which uses
+    a LIFO system.
+  Gross profits in $ can be computed as PROFIT*(PRICE/QTY)*MOVE
+  OK is imputed by a program that scans for irregularities across
+    categories, for example if the sales of the store are twice
+    what they are usually, and the preceding week has zero sales
+    then it is likely that the sales were aggregated together.  This
+    will be flagged with OK=0.
+  SALE can take the following values:
+    B   Bonus-buy
+    C   Coupon
+    G   ?
+    S   ?
+    Non-null SALE values denote some type of promotion.
+  WEEK refers to Dominick's store week, where WEEK=1 is 9/14/1989-9/20/1989,
+    WEEK=2 is 9/21/1989-9/27/1989, etc.  See the data/date.asc file.
+    Note that weeks always start with a Thursday and ends on Wednesday.
+
+
+
+=======================================================================
+Contents of SAS dataset upcxxx
+ 
+#    Variable    Type    Len    Pos   Description
+-----------------------------------   ---------------------------------
+5    CASE        Num       8     42   Number of units in a case (from prod)
+1    COM_CODE    Num       8      0   Dominick's Commodity Code
+3    DESCRIP     Char     20     16   Product name and description
+7    NITEM       Num       8     58   Dominick's item number
+4    SIZE        Char      6     36   Product Size of a single unit
+2    UPC         Num       8      8   UPC Number
+6    WSTART      Num       8     50   First week UPC is sold in data
+
+Notes:
+
+  The DESCRIP are entered by Dominicks store employees and may include
+    many abbreviations that depend upon the brand and product.
+  WSTART is often not set
+  The complete listing of COM_CODE is given in the data/com_code.txt file.
+  For more information about the UPC's from IRI see the data/upcdict file.
+    Also, note that UPCs are not necessarily unique through time.  UPCs can
+    be reused by a manufacturer.  Usually this is not a problem when looking
+    at short time spans (<26 weeks), but for longer periods it is a good idea
+    to make sure that there is not a new version # associated with a UPC.
+
+
+=======================================================================
+Contents of SAS dataset wptwsh
+
+ #    Variable    Type    Len    Pos  Description
+------------------------------------  ---------------------------------
+ 6    ALT         Num       8     40  Height of item in inches from floor (?)
+ 4    AREA        Num       8     24  Area in square inches (IWIDTH*IHEIGHT*STACK*FACING)
+14    CAPACITY    Num       8    104  Number of units on shelf (DEPTH*STACK*FACING)
+15    DEPTH       Num       8    112  Depth of shelf in units
+23    EXPER       Num       8    166  Indiciator if assignment effected by shelf experiment (?)
+ 2    FACING      Num       8      8  Length of shelf in units
+10    IDEPTH      Num       8     72  Depth of item in inches
+ 8    IHEIGHT     Num       8     56  Height of item in inches
+ 9    IWIDTH      Num       8     64  Width of item in inches
+ 5    MID         Num       8     32  Midpoint of item in inches (?)
+19    MOVE        Num       8    134  see MOVE in wxxx 
+20    PRICE       Num       8    142  see PRICE in wxxx
+ 7    RIGHT       Num       8     48  Distance from right edge of shelf in inches (?)
+21    SALE        Char      8    150  see SALE in wxxx
+22    SALES       Num       8    158  see SALES in wxxx
+13    SDEPTH      Num       8     96  Depth of shelf in inches
+11    SHEIGHT     Num       8     80  Height of shelf in inches
+ 3    SHELF       Num       8     16  Shelf number (1 is on bottom (?))
+24    SIZE7       Num       8    174  Standardized size of unit
+12    SLENGTH     Num       8     88  Length of shelf
+16    STACK       Num       8    120  Number of units that can be stacked
+17    STORE       Num       3    128  Store Number
+ 1    UPC         Num       8      0  UPC Number
+18    WEEK        Num       3    131  Week number
