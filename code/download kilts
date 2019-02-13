@@ -1,0 +1,6 @@
+import urllib
+
+testfile = urllib.URLopener()
+relative_url = "/-/media/enterprise/centers/kilts/datasets/dominicks-dataset/movement_csv-files/wdid.zip"
+absolute_url = "https://www.chicagobooth.edu/research/kilts/datasets/dominicks" + relative_url
+testfile.retrieve(absolute_url, "wdid.csv")
