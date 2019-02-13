@@ -1,5 +1,5 @@
 # date: 1/21/2019
-# author: Yifan Xu
+# author: Yifan Xu, Owen Eagen
 # goal: to replicate the results in Dreze et al. paper using dff datasets
 # taking dish detergents as an example
 ##==============================================================================
@@ -8,58 +8,63 @@ library(data.table)
 
 # space-to-movement results (table 1 in paper)
 
+# set a category to look at
+cat = "cer"     # category code, cer = cereal
+plano_file = paste0("w", cat, "sh.csv")
+move_file = paste0("w", cat, ".csv")
+
 ## first unzip the relevant datasets to a local directory for future reference
 zip_file_dir = "~/Dropbox/RA2/externals/POG/data_csv/dff_csv.zip"
-target_dir = "~/Desktop/Econ_Research/2018_fall_CPG/CPG_data"
-files_to_unzip = c("wdidsh.csv", "wdid.csv") # b/c I think these two are relevant
+target_dir = "~/Desktop/Research/CPG"
+files_to_unzip = c(move_file, plano_file) 
 unzip(zip_file_dir, files = files_to_unzip, exdir = target_dir)
 
 ## now load the datasets
 setwd(target_dir)
-wdidsh = fread("wdidsh.csv")
-wdid = fread("wdid.csv")
+plano = fread(plano_file)
+move = fread(move_file)
 
 ## get the column names for each dataset
-colnames_wdidsh = colnames(wdidsh)
-colnames_wdid = colnames(wdid)
+colnames_plano = colnames(plano)
+colnames_move = colnames(move)
 
 ## get the weeks covered in each dataset
-weeks_wdidsh = unique(wdidsh$WEEK)
-weeks_wdid = unique(wdid$WEEK)
-vector_inclusion(weeks_wdidsh, weeks_wdid) # uses the helper function at the bottom
+weeks_plano = unique(plano$WEEK)
+weeks_move = unique(move$WEEK)
+vector_inclusion(weeks_plano, weeks_move) # uses the helper function at the bottom
 
 ## get the stores covered in each dataset
-stores_wdidsh = unique(wdidsh$STORE)
-stores_wdid = unique(wdid$STORE)
-vector_inclusion(stores_wdidsh, stores_wdid)
+stores_plano = unique(plano$STORE)
+stores_move = unique(move$STORE)
+vector_inclusion(stores_plano, stores_move)
 
 ## get the weeks covered in each dataset for each store in stores_wdidsh
-### wdidsh
-store_week_wdidsh = data.table(STORE = integer(),
+### planogram dataset
+store_week_plano = data.table(STORE = integer(),
                                WEEK = integer(),
                                NUM_WEEKS = integer())
-for (store in stores_wdidsh) {
-  weeks = unique(wdidsh[STORE == store & EXPER == 1]$WEEK)
+for (store in stores_plano) {
+  weeks = unique(plano[STORE == store & EXPER == 1]$WEEK)
   for (week in weeks) {
-    store_week_wdidsh = rbind(store_week_wdidsh, list(store, week, length(weeks)))
+    store_week_plano = rbind(store_week_plano, list(store, week, length(weeks)))
   }
 }
-store_week_wdidsh = store_week_wdidsh[order(STORE, WEEK)]
-### wdid
-store_week_wdid = data.table(STORE = integer(),
+store_week_plano = store_week_plano[order(STORE, WEEK)]
+### movement dataset
+store_week_move = data.table(STORE = integer(),
                                WEEK = integer(),
                                NUM_WEEKS = integer())
-for (store in stores_wdidsh) {
-  weeks = unique(wdid[STORE == store & OK == 1]$WEEK)
+for (store in stores_plano) {
+  weeks = unique(move[STORE == store & OK == 1]$WEEK)
   for (week in weeks) {
-    store_week_wdid = rbind(store_week_wdid, list(store, week, length(weeks)))
+    store_week_move = rbind(store_week_move, list(store, week, length(weeks)))
   }
 }
-store_week_wdid = store_week_wdid[order(STORE, WEEK)]
+store_week_move = store_week_move[order(STORE, WEEK)]
 
 ## saving the summary tables to working directory
-write.csv(store_week_wdidsh, file = "store_week_wdidsh.csv")
-write.csv(store_week_wdid, file = "store_week_wdid.csv")
+write.csv(store_week_plano, file = paste0("store_week_w", cat, "sh.csv"))
+write.csv(store_week_move, file = paste0("store_week_w", cat, ".csv"))
 
 ##------------------------------------------------------------------------------
 # helper functions
