@@ -8,6 +8,10 @@ setwd("~/Dropbox/RA2/externals/POG/kilts/")
 # choose a category (loop)
 prod_cats = c("cso", "cer", "ptw", "did", "tpa", "rfj", 
               "bjc", "tna", "ana", "tti", "ora", "tbr")
+
+# for these categories, R threw an error when trying to read in the move dataset
+PROBLEM_CATS = c("ana", "ora")
+
 for (prod_cat in prod_cats) {
   target_dir = paste0(prod_cat, "/")
   zip_name = paste0(target_dir, "w", prod_cat, ".zip")
