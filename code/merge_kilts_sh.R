@@ -1,6 +1,6 @@
 # Goal: merge movement (kilts) data with planogram data for each category in POG/kilts folder
 # Owen Eagen, Yifan Xu
-# 2/14/2018
+# 2/25/2019
 
 library(data.table)
 setwd("~/Dropbox/RA2/externals/POG/kilts/")
@@ -22,8 +22,11 @@ for (prod_cat in prod_cats) {
   unzip(zipfile = zip_name, exdir = temp_dir)
   move_file = paste0(temp_dir, "/w", prod_cat, ".csv")
   plano_file = paste0(target_dir, "w", prod_cat, "sh.csv")
-  move = fread(move_file)
-  plano = fread(plano_file, drop = c(1))
+  move = fread(move_file, colClasses = list(character = c("UPC")), 
+               stringsAsFactors = FALSE)
+  plano = fread(plano_file, drop = c(1), 
+                colClasses = list(character = c("UPC")), 
+                stringsAsFactors = FALSE)
   
   # inner merge dataset and write
   dt = merge(move, plano, by = c("UPC", "STORE", "WEEK"), 
