@@ -40,5 +40,6 @@ for (prod_cat in prod_cats) {
 }
 
 cso[, SALES_m := MOVE_m * PRICE_m / QTY]
+cso[, price_ratio := PRICE_m / PRICE_p]
 cso[, diff_sales := abs(SALES_m - SALES)]
 cso[, perc_diff_sales := diff_sales / SALES_m]
