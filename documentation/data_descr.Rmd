@@ -2,16 +2,23 @@
 title: "CPG Data Description"
 subtitle: "in progress"
 author: "Yifan Xu, Owen Eagen"
-date: "2019/1/1"
+date: "2019/02/27"
 output: 
   pdf_document:
     toc: true
     number_sections: true
-header-includes:
-  - \usepackage{color}
-  - \definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
-urlcolor: airforceblue
+# header-includes:
+#   - \usepackage{color}
+#   - \definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+# urlcolor: airforceblue
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, eval = TRUE, size = "small")
+library(knitr)
+library(kableExtra)
+library(data.table)
+```
 
 This file documents observations made during the data cleaning process for the 
 CPG project.
@@ -351,3 +358,45 @@ in both datasets. Our findings are as follows:
 
 
 # Merging Kilts 
+
+# Data Description
+
+The data of interest to this project is located in the RA2/externals/POG/kilts directory. Within this directory, the data is divided by product category into  12 subdirectories named as follows: 
+
+* `cso, cer, ptw, did, tpa, rfj, bjc, tna, ana, tti, ora, tbr`
+
+Each directory name `xxx` is a category code corresponding to the product category of the data within. The meaning of each category abbreviation can be found in the following table.
+
+## Category code meaning
+
+```{r echo=FALSE}
+cat_code_tbl = data.frame(
+  Code = c('ana', 'bat','ber', 'bjc', 'cer', 'che', 'cig', 'coo', 'cra', 'cso', 'did', 'fec', 'frd', 'fre', 'frj', 'fsf', 'gro', 'lnd', 'oat', 'ptw', 'rfj', 'sdr','sha', 'sna','soa', 'tbr', 'tna', 'tpa', 'tti'),
+  
+  Category = c('Analgesics', 'Bath Soap', 'Beer', 'Bottled Juice', 'RTE Cereal', 'Cheese', 'Cigarettes', 'Cookies', 'Crackers', 'Canned Soups', 'Dish Detergent', 'Front-end Candy', 'Frozen Dinners', 'Frozen Entrees', 'Frozen Juice', 'Fabric Softener', 'Grooming', 'Laundry Detergent', 'Hot Cereal', 'Paper Towels', 'Refrigerated Juice', 'Soft Drinks', 'Shampoo', 'Snack Crackers', 'Soap', 'Tooth Brushes', 'Canned Tuna', 'Toothpaste', 'Toilet Paper')
+)
+
+ kable(cat_code_tbl, booktabs = T) %>%
+   kable_styling(latex_options = "striped", position = "left")
+```
+
+## `xxx` subdirectory contents
+
+Each category directory contains the following files, where "`xxx`" is replaced by the appropriate code:
+
+* `upcxxx.csv`: this contains product information on the UPC level.
+* `wxxxsh.csv`: this contains planogram (and sales) information on the UPC/store/week level
+* `wxxx.csv`: this contains movement (i.e. sales) data on the UPC/store/week level. [^1]
+* `xxx_merge.csv`: this file contains an inner merge of the data in `wxxxsh.csv` and `wxxx.csv`. 
+
+[^1]: Descriptions for `wxxxsh.csv` and `wxxx.csv` are omitted, as their data structures are identical to that of `xxx_merge.csv`, since it is a merging of the two.
+
+## `upcxxx.csv` data structure
+
+This data is publicly accessible, provided by the [Kilts Center for Marketing at the Chicago Booth School of Business](https://www.chicagobooth.edu/research/kilts/datasets/dominicks).
+
+This dataset has 5 columns:
+
+* 
+
+## `xxx_merge.csv` data structure
