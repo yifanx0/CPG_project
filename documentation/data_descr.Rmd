@@ -1,16 +1,15 @@
 ---
 title: "CPG Data Description"
-subtitle: "in progress"
 author: "Yifan Xu, Owen Eagen"
 date: "2019/02/27"
-output: 
+output:
+  html_document:
+    df_print: paged
+    toc: yes
   pdf_document:
-    toc: true
-    number_sections: true
-# header-includes:
-#   - \usepackage{color}
-#   - \definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
-# urlcolor: airforceblue
+    number_sections: yes
+    toc: yes
+subtitle: in progress
 ---
 
 ```{r setup, include=FALSE}
@@ -386,12 +385,12 @@ Each category directory contains the following files, where "`xxx`" is replaced 
 
 * `upcxxx.csv`: this contains product information on the UPC level.
 * `wxxxsh.csv`: this contains planogram (and sales) information on the UPC/store/week level
-* `wxxx.csv`: this contains movement (i.e. sales) data on the UPC/store/week level. [^1]
+* `wxxx.csv`: this contains movement (i.e. sales) data on the UPC/store/week level[^2].
 * `xxx_merge.csv`: this file contains an inner merge of the data in `wxxxsh.csv` and `wxxx.csv`. 
 
-[^1]: Descriptions for `wxxxsh.csv` and `wxxx.csv` are omitted, as their data structures are identical to that of `xxx_merge.csv`, since it is a merging of the two.
+[^2]: Descriptions for `wxxxsh.csv` and `wxxx.csv` are omitted, as their data structures are identical to that of `xxx_merge.csv`, which is an inner merge of the two and thus contains the union of their columns.
 
-## `upcxxx.csv` data structure
+## `upcxxx.csv`
 
 This data is publicly accessible, provided by the [Kilts Center for Marketing at the Chicago Booth School of Business](https://www.chicagobooth.edu/research/kilts/datasets/dominicks).
 
@@ -399,4 +398,56 @@ This dataset has 5 columns:
 
 * 
 
-## `xxx_merge.csv` data structure
+## `xxx_merge.csv`
+
+This dataset has 32 columns:
+
+```{}
+ [1] "UPC"        "STORE"      "WEEK"       "MOVE_m"     "QTY"        "PRICE_m"   
+ [7] "SALE_m"     "PROFIT"     "OK"         "PRICE_HEX"  "PROFIT_HEX" "FACING"    
+[13] "SHELF"      "AREA"       "MID"        "ALT"        "RIGHT"      "IHEIGHT"   
+[19] "IWIDTH"     "IDEPTH"     "SHEIGHT"    "SLENGTH"    "SDEPTH"     "CAPACITY"  
+[25] "DEPTH"      "STACK"      "MOVE_p"     "PRICE_p"    "SALE_p"     "SALES"     
+[31] "EXPER"      "SIZE7"  
+```
+
+Variable names which end with "`_m`" are from `wxxx.csv` (movement) and those that end with "`_p`" are from `wxxxsh.csv` (planogram). These suffixes distinguish between column names which appear in both datasets (i.e. `MOVE`, `PRICE`, and `SALE`). 
+
+Here is our understanding of the meanings of these variables[^3].
+
+[^3]: These descriptions come from the file `struct_dff.txt` in the externals/POG/doc directory which was ostensibly written by the previous custodians of this data. Some meanings are educated guesses on their part.
+
+Variables from movement dataset, `wxxx.csv`: 
+
+* `UPC`: UPC number
+* `STORE`: store number
+* `WEEK`: week number
+* `MOVE_m`: number of items sold
+* `QTY`: number of items per package
+* `PRICE_m`: price per package
+* `SALE_m`: categorical indicator of sale type, can take following values:
+    + "B": Bonus-buy
+    + "C": Coupoon
+    + "G": ?
+    + "S": ?
+
+* `PROFIT`: profit margin, (price - cost)/price
+* `OK`: indicator, is this record ok? (1=yes, 0=no)
+* `PRICE_HEX`: ?
+* `PROFIT_HEX`: ? 
+
+Variables from planogram dataset, `wxxxsh.csv`:
+
+* `FACING`: length of shelf in units
+* `SHELF`: shelf number
+* `AREA`: area of item in square inches
+* `MID`: midpoint of item (?)
+* `ALT`: altitude of item in inches from floor      
+* `RIGHT`: distance from right edge of shelf in inches (?)
+* `IHEIGHT`: height of item in inches   
+[19] "IWIDTH"     "IDEPTH"     "SHEIGHT"    "SLENGTH"    "SDEPTH"     "CAPACITY"  
+[25] "DEPTH"      "STACK"      "MOVE_p"     "PRICE_p"    "SALE_p"     "SALES"     
+[31] "EXPER"      "SIZE7"  
+
+
+
