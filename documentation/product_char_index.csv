@@ -1,7 +1,41 @@
 category,category code,characteristic,variable name
 canned soups,cso,low sodium,low_sodium
-,,broth,broth
-,,campbell's,campbell
-,,progresso,prog
-,,chicken noodle,chx_noodle
-,,chowder,chowder
+canned soups,cso,broth,broth
+canned soups,cso,campbell's brand,campbell
+canned soups,cso,progresso brand,prog
+canned soups,cso,chicken noodle,chx_noodle
+canned soups,cso,chowder,chowder
+canned soups,cso,,
+canned soups,cso,,
+dish detergent,did,,
+dish detergent,did,,
+dish detergent,did,,
+dish detergent,did,,
+dish detergent,did,,
+dish detergent,did,,
+dish detergent,did,,
+toilet paper,tti,,
+toilet paper,tti,,
+toilet paper,tti,,
+toilet paper,tti,,
+toilet paper,tti,,
+toilet paper,tti,,
+toilet paper,tti,,
+toilet paper,tti,,
+bottle juice,bjc,,
+bottle juice,bjc,,
+bottle juice,bjc,,
+bottle juice,bjc,,
+bottle juice,bjc,,
+bottle juice,bjc,,
+bottle juice,bjc,,
+bottle juice,bjc,,
+bottle juice,bjc,,
+analgesics,ana,,
+analgesics,ana,,
+analgesics,ana,,
+analgesics,ana,,
+analgesics,ana,,
+analgesics,ana,,
+analgesics,ana,,
+analgesics,ana,,
