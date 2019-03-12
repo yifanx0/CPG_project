@@ -1,8 +1,8 @@
 category,category code,characteristic,variable name
 canned soups,cso,low sodium,low_sodium
 canned soups,cso,broth,broth
-canned soups,cso,campbell's brand,campbell
-canned soups,cso,progresso brand,prog
+canned soups,cso,campbell's brand,campbell_brnad
+canned soups,cso,progresso brand,prog_brand
 canned soups,cso,chicken noodle,chx_noodle
 canned soups,cso,chowder,chowder
 canned soups,cso,minestrone,minestrone
