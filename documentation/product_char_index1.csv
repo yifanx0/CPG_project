@@ -1,0 +1,49 @@
+category,category code,characteristic,variable name
+canned soups,cso,low sodium,low_sodium
+canned soups,cso,broth,broth
+canned soups,cso,Campbell's (brand),campbell_brnad
+canned soups,cso,Progresso (brand),prog_brand
+canned soups,cso,chicken noodle,chx_noodle
+canned soups,cso,chowder,chowder
+canned soups,cso,minestrone,minestrone
+canned soups,cso,tomato soup,tomato
+dish detergent,did,dove brand,dove
+dish detergent,did,sunlight brand,sunlight
+dish detergent,did,gel,gel
+dish detergent,did,powder,powder
+dish detergent,did,Ajax (brand),ajax_brand
+dish detergent,did,lemon or lime scented,lem_lime
+dish detergent,did,Dawn (brand),dawn_brand
+toilet paper,tti,,
+toilet paper,tti,,
+toilet paper,tti,,
+toilet paper,tti,,
+toilet paper,tti,,
+toilet paper,tti,,
+toilet paper,tti,,
+toilet paper,tti,,
+bottle juice,bjc,,
+bottle juice,bjc,,
+bottle juice,bjc,,
+bottle juice,bjc,,
+bottle juice,bjc,,
+bottle juice,bjc,,
+bottle juice,bjc,,
+bottle juice,bjc,,
+bottle juice,bjc,,
+analgesics,ana,,
+analgesics,ana,,
+analgesics,ana,,
+analgesics,ana,,
+analgesics,ana,,
+analgesics,ana,,
+analgesics,ana,,
+analgesics,ana,,
+refrigerated juice,rfj,Minute Maid (brand),brand_minute_maid
+refrigerated juice,rfj,Dole (brand),brand_dole
+refrigerated juice,rfj,Sunny Delight (brand),brand_sunny_d
+refrigerated juice,rfj,Citrus Hill (brand),brand_citrus_hill
+refrigerated juice,rfj,calcium fortified,calcium
+refrigerated juice,rfj,orange juice,orange
+refrigerated juice,rfj,yogurt,yogurt
+refrigerated juice,rfj,iced tea,tea

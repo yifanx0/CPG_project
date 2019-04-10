@@ -293,3 +293,39 @@ detail_list = c("sardine product",
                 "StarKist (brand)")
 product_descr = "canned tuna"
 write_product_char(product, product_descr, char_list, pattern_list, detail_list)
+
+#==============================================================================
+# did
+product = "did"
+kilts_dir = "~/Dropbox/RA2/externals/POG/kilts/"
+setwd(paste0(kilts_dir, product))
+dataset = fread(paste0("upc", product, ".csv"))
+descr_list = unique(dataset$DESCRIP)
+char_list = c("dove",
+              "brand_sunlight", 
+              "brand_cascade",
+              "powder",
+              "brand_ajax",
+              "lem_lime",
+              "brand_electrasol",
+              "brand_dawn")
+pattern_list = list(c("DOVE"),
+                    c("SUNLIGHT"),
+                    c("CASCADE", "CASCD"),
+                    c("POWDER", "POWDE", "PWDR"),
+                    c("AJAX"),
+                    c("LEM", "LEMON", "LIME", "LEMO", "LIM", "LMN"),
+                    c("ELECTRASOL"),
+                    c("DAWN"))
+
+detail_list = c("Dove (brand)", 
+                "Sunlight (brand)", 
+                "Cascade (brand)",
+                "powder",
+                "Ajax (brand)",
+                "lemon or lime scented",
+                "Electrasol (brand)",
+                "Dawn (brand)")
+
+product_descr = "dish detergent"
+write_product_char(product, product_descr, char_list, pattern_list, detail_list)
