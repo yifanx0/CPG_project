@@ -1,7 +1,10 @@
-# date: Mar 2019
+# date: Mar-Apr 2019
 # author: Yifan Xu
-# goal: to construct product characteristics for rfj, tbr, tpa
-# refrigerated juice, toothbrush, toothpaste
+# goal: to construct product characteristics (dummies) for 
+#       rfj, tbr, tpa, 
+#       ptw, cer, tna
+# i.e., refrigerated juice, toothbrush, toothpaste, 
+#       paper towels, RTE cereals, canned tuna
 #==============================================================================
 library(data.table)
 
@@ -38,7 +41,7 @@ write_product_char =
     setwd(doc_dir)
     print(paste0("working directory: ", doc_dir))
     char_index_filename = "product_char_index.csv"
-    char_index = as.data.table(read.csv(char_index_filename, row.names = 1))
+    char_index = as.data.table(read.csv(char_index_filename))
     
     for (i in 1:length(char_list)) {
       new_line = list(product_descr, product, detail_list[i], char_list[i])
@@ -160,4 +163,133 @@ detail_list = c("Mentadent (brand)",
                 "Tom's of Maine (brand)",
                 "Sensodyne (brand)")
 product_descr = "toothpaste"
+write_product_char(product, product_descr, char_list, pattern_list, detail_list)
+
+#==============================================================================
+# ptw
+product = "ptw"
+kilts_dir = "~/Dropbox/RA2/externals/POG/kilts/"
+setwd(paste0(kilts_dir, product))
+dataset = fread(paste0("upc", product, ".csv"))
+descr_list = unique(dataset$DESCRIP)
+char_list = c("recycled",
+              "brand_kleenex", 
+              "brand_bounty",
+              "brand_dom",
+              "brand_brawny",
+              "brand_scott",
+              "brand_hidri")
+pattern_list = list(c("RECYCLED"),
+                    c("KLEENEX", "KLNX", "VIVA"),
+                    c("BOUNTY", "BNTY"),
+                    c("DOM"),
+                    c("BRAWNY"),
+                    c("SCOTT"),
+                    c("HI DRI", "HI-DRI"))
+detail_list = c("recycled paper", 
+                "Kleenex (brand, with Viva as a second line)", 
+                "Bounty (brand)",
+                "Dominick's (brand)",
+                "Brawny (brand)",
+                "Scott (brand)",
+                "Hi-Dri (brand)")
+product_descr = "paper towel"
+write_product_char(product, product_descr, char_list, pattern_list, detail_list)
+
+#==============================================================================
+# cer
+product = "cer"
+kilts_dir = "~/Dropbox/RA2/externals/POG/kilts/"
+setwd(paste0(kilts_dir, product))
+dataset = fread(paste0("upc", product, ".csv"))
+descr_list = unique(dataset$DESCRIP)
+char_list = c("bran",
+              "oatmeal",
+              "raisin",
+              "nut",
+              "low_fat",
+              "fruit",
+              "honey",
+              "brand_dom",
+              "brand_quaker",
+              "brand_kel",
+              "brand_genmil",
+              "brand_nab",
+              "brand_post",
+              "brand_ralston")
+pattern_list = list(c("BRAN"),
+                    c("OAT"),
+                    c("RAI", "RSN"),
+                    c("NUT"),
+                    c("LOW", "L/F"),
+                    c("FRT", "FRUIT"),
+                    c("HON", "HNY"),
+                    c("DOM"),
+                    c("QUAKER", "QKR"),
+                    c("KEL", "KLG"),
+                    c("GM", "GEN"),
+                    c("NAB"),
+                    c("POST"),
+                    c("RALSTON"))
+detail_list = c("contains bran",
+                "oatmeal/oat",
+                "contains raisin",
+                "contains nuts",
+                "low fat",
+                "contains fruit",
+                "contains honey",
+                "dominick's (brand)",
+                "Quaker (brand)",
+                "Kellogg's (brand)",
+                "General Mill's (brand)",
+                "Nabisco (brand)",
+                "Post (brand)",
+                "Ralston (brand)")
+product_descr = "RTE cereal"
+write_product_char(product, product_descr, char_list, pattern_list, detail_list)
+
+#==============================================================================
+# tna
+product = "tna"
+kilts_dir = "~/Dropbox/RA2/externals/POG/kilts/"
+setwd(paste0(kilts_dir, product))
+dataset = fread(paste0("upc", product, ".csv"))
+descr_list = unique(dataset$DESCRIP)
+char_list = c("sardine",
+              "oyster", 
+              "tuna",
+              "salmon",
+              "crab",
+              "shrimp",
+              "brand_cos",
+              "brand_dom",
+              "brand_kingos",
+              "brand_royal",
+              "brand_polar",
+              "brand_sk")
+pattern_list = list(c("SARD"),
+                    c("OYSTE"),
+                    c("TUN"),
+                    c("SALMON", "SOCKEY", "PINK"),
+                    c("CRAB", "CRB"),
+                    c("SHRIMP"),
+                    c("C O S", "COS", "C.O.S."),
+                    c("DOM"),
+                    c("OSCAR", "OSCR", "oscar"),
+                    c("ROYAL"),
+                    c("POLAR"),
+                    c("STAR", "SK ", "STRKST"))
+detail_list = c("sardine product", 
+                "oyster product", 
+                "tuna product",
+                "salmon product",
+                "crab product",
+                "shrimp product",
+                "Chicken of the Sea (brand)",
+                "Dominick's (brand)",
+                "King Oscar (brand)",
+                "Royal (brand)",
+                "Polar (brand)",
+                "StarKist (brand)")
+product_descr = "canned tuna"
 write_product_char(product, product_descr, char_list, pattern_list, detail_list)
