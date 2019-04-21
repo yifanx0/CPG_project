@@ -1,0 +1,42 @@
+---
+title: "Replication of Table 3"
+output: html_notebook
+---
+
+```{r}
+library(data.table)
+library(stats)
+library(stargazer)
+library(knitr)
+```
+
+- model:
+
+"log(U) = a_0 + a_1 * B + a_2 * S + a_3 * log(P) + a_4 * X + a_5 * (X ** 2) + a_6 * Y + a_7 * (Y ** 2) + a_8 * (Y ** 3) + a_9 * (exp(- k * A))"
+
+```{r}
+cer_merge = fread("~/Dropbox/RA2/externals/POG/kilts/cer/cer_merge.csv")
+cer_prod_char = fread("~/Dropbox/RA2/externals/POG/kilts/cer/cer_product_char.csv")
+cer_prod_char[, brand := NULL]
+brands = c("dom", "quaker", "kel", "genmil", "nab", "post", "ralston")
+for (brand_i in brands) {
+  col_name = paste0("brand_", brand_i)
+  for (i in 1:nrow(cer_prod_char)) {
+    if (cer_prod_char[i, col_name, with = FALSE] == 1) {
+      cer_prod_char[i, brand := brand_i]
+    }
+  }
+}
+
+cer_prod_char$brand = factor(cer_prod_char$brand)
+cer_prod_char$V1 = NULL
+
+cer_merge = merge(cer_merge, cer_prod_char, by = c("UPC"), all = TRUE)
+
+# subset the data whose brand is identified
+# only 65% of the original data are left -- maybe we should identify all brands
+cer_merge = cer_merge[!is.na(brand)]
+
+
+```
+
